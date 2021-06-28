@@ -40,10 +40,11 @@ steps:
       git config --global user.email shingo.test@55mp.com
       git config --global user.name shingo
       git commit -va -m update
+      git remote -v
       git push -f
 
   secretEnv: ['TOKEN']
 availableSecrets:
   secretManager: 
-  - versionName: projects/749198984725/secrets/test-token/versions/2
+  - versionName: projects/749198984725/secrets/test-token/versions/3
     env: TOKEN
