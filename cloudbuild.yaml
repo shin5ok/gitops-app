@@ -31,11 +31,10 @@ steps:
   args:
     - '-c'
     - |
-      export SHORT_SHA=$SHORT_SHA ; \
       git clone https://$$TOKEN@github.com/kawanos/gitops-manifests.git && \
       cd gitops-manifests && \
       git checkout dev && \
-      cat deployment.yaml.tpl | sed -e "s/SHORT_SHA/$SHORT_SHA/" | sed -e "s/PROJECT_ID/$PROJECT_ID/" > deployment.yaml
+      cat deployment.yaml.tpl | sed -e "s/SHORT_SHA/${SHORT_SHA}/" | sed -e "s/PROJECT_ID/${PROJECT_ID}/" > deployment.yaml
       git add .
       git config --global user.email shingo.test@55mp.com
       git config --global user.name shingo
