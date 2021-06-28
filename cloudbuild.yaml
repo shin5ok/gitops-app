@@ -35,7 +35,7 @@ steps:
       git clone https://$$TOKEN@github.com/shin5ok/gitops-manifests.git && \
       cd gitops-manifests && \
       git checkout dev && \
-      cat deployment.yaml.tpl | sed -i "s/\$SHORT_SHA/$SHORT_SHA/" | sed -i "s/\$PROJECT_ID/$PROJECT_ID/" > deployment.yaml
+      cat deployment.yaml.tpl | sed "s/\$SHORT_SHA/$SHORT_SHA/" | sed "s/\$PROJECT_ID/$PROJECT_ID/" > deployment.yaml
       git config --global user.email shingo.test@55mp.com
       git config --global user.name shingo
       git commit -va -m update
