@@ -27,6 +27,7 @@ steps:
 
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Create manifest
+  entrypoint: /bin/sh
   args:
     - '-c'
     - |
