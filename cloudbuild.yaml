@@ -40,7 +40,7 @@ steps:
       git config --global user.email shingo.test@55mp.com
       git config --global user.name shingo
       git commit -va -m update
-      git push origin dev
+      git push -f
 
   secretEnv: ['TOKEN']
 availableSecrets:
