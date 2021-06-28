@@ -38,6 +38,7 @@ steps:
       cat deployment.yaml.tpl | sed -e "s/\$SHORT_SHA/$SHORT_SHA/" | sed -e "s/\$PROJECT_ID/$PROJECT_ID/" > deployment.yaml
       git config --global user.email shingo.test@55mp.com
       git config --global user.name shingo
+      git add .
       git commit -va -m update
       git push origin dev
 
