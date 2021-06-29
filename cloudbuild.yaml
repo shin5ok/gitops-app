@@ -5,7 +5,7 @@ steps:
   entrypoint: /bin/sh
   args:
   - -c
-  - 'pip install flask && python test_app.py -v'
+  - 'pip install flask pytest && python main_test.py -v'
 
 # This step builds the container image.
 - name: 'gcr.io/cloud-builders/docker'
@@ -24,3 +24,25 @@ steps:
   args:
   - 'push'
   - 'gcr.io/$PROJECT_ID/gitops-test:$SHORT_SHA'
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: Create manifest
+  entrypoint: /bin/sh
+  args:
+    - '-c'
+    - |
+      git clone https://$$TOKEN@github.com/kawanos/gitops-manifests.git && \
+      cd gitops-manifests && \
+      git checkout dev && \
+      cat deployment.yaml.tpl | sed -e "s/SHORT_SHA/${SHORT_SHA}/" | sed -e "s/PROJECT_ID/${PROJECT_ID}/" > deployment.yaml
+      git add .
+      git config --global user.email shingo.test@55mp.com
+      git config --global user.name shingo
+      git commit -va -m "Update of GitOps"
+      git push
+
+  secretEnv: ['TOKEN']
+availableSecrets:
+  secretManager: 
+  - versionName: projects/749198984725/secrets/test-token/versions/3
+    env: TOKEN
