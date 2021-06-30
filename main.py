@@ -24,7 +24,7 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/<name>")
 def hello_world(name = "World"):
-    return "<H2>Hello {}!</h2>".format(name)
+    return "<H2>Good Morning {}!</h2>".format(name)
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
