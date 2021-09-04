@@ -45,7 +45,7 @@ def fuka():
     fibo20()
     fibo2()
     fibo30()
-    return "high loaded by slow fibo"
+    return "There is something high loaded by slow fibo"
     
 def slowfibo(n):
 	if n < 2 :
