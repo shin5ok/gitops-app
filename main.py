@@ -16,9 +16,12 @@
 # [START run_helloworld_service]
 import os
 
-from flask import Flask
+from flask import Flask,jsonify
+import json
 
 app = Flask(__name__)
+
+local_version = "0.01"
 
 
 @app.route("/")
@@ -26,17 +29,23 @@ app = Flask(__name__)
 def hello_world(name = "World"):
     return "<H2>Hello {}!</h2>".format(name)
 
+
+@app.route("/version")
+def version():
+    return jsonify({"version":local_version})
+
 @app.route("/fuka")
 def fuka():
     def fibo2():
         slowfibo(2)
-    def fibo10():
-        slowfibo(10)
     def fibo20():
         slowfibo(20)
-    fibo10
-    fibo2
-    fibo20
+    def fibo30():
+        slowfibo(30)
+    fibo20()
+    fibo2()
+    fibo30()
+    return "high loaded by slow fibo"
     
 def slowfibo(n):
 	if n < 2 :
