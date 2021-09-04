@@ -40,7 +40,7 @@ steps:
       git diff
       git add .
       git commit -va -m "Update of GitOps"
-      git push origin dev
+      git push origin dev -u -v
 
   secretEnv: ['TOKEN']
 availableSecrets:
