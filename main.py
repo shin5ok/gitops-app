@@ -26,5 +26,23 @@ app = Flask(__name__)
 def hello_world(name = "World"):
     return "<H2>Hello {}!</h2>".format(name)
 
+@app.route("/fuka")
+def fuka():
+    def fibo2():
+        slowfibo(2)
+    def fibo10():
+        slowfibo(10)
+    def fibo20():
+        slowfibo(20)
+    fibo10
+    fibo2
+    fibo20
+    
+def slowfibo(n):
+	if n < 2 :
+		return n
+	return slowfibo(n-2) + slowfibo(n-1)
+    
+        
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
